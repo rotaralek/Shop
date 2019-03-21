@@ -1,6 +1,27 @@
-﻿@{
+﻿@model IEnumerable<Shop.Models.Product>
+
+@{
+
     ViewData["Title"] = "Home Page";
 }
+
+<table>
+    <tr>
+        <td>Модель</td>
+        <td>Производитель</td>
+        <td>Цена</td>
+        <td></td>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Description</td>
+            <td>@product.Price</td>
+            <td><a href="~/Home/Buy/@product.Id">Купить</a></td>
+        </tr>
+    }
+</table>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Models;
 
 namespace Shop
 {
@@ -39,6 +40,9 @@ namespace Shop
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ProductContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

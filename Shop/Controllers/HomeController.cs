@@ -10,9 +10,16 @@ namespace Shop.Controllers
 {
     public class HomeController : Controller
     {
+        ProductContext db;
+
+        public HomeController(ProductContext context)
+        {
+            db = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(db.Products.ToList());
         }
 
         public IActionResult About()
